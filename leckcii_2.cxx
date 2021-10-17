@@ -12,6 +12,7 @@ void addText(string &a)
 }
 int main()
 {
+	system("chcp 1251")
 	cout << "Список действий:" << endl;
 	cout << "(Что ввести - что делает)" << endl;
 	cout << "1 - Выход из программы" << endl;
