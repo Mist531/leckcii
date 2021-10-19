@@ -1,64 +1,104 @@
 #include <iostream>
+
 #include <string>
+
 using namespace std;
-int main()
+
+void proverka(double a)
+
 {
-	setlocale(LC_ALL, "");
-	string a1, b2;
-	double a, b, c;
-	char e;
-	cout << "Введите первое число: ";
-	cin >> a1;
-	try
-	{
-		a = stod(a1);
+
+	while (!(cin >> a))	{
+
+		cout << "error\n";
+
+		cin.clear();
+
+		fflush(stdin);
+
 	}
-	catch (invalid_argument)
-	{
-		cout << "Введено неверное значение" << endl;
-		exit(0);
-	}
-	cout << "Введите второе число: ";
-	cin >> b2;
-	try
-	{
-		b = stod(b2);
-	}
-	catch (invalid_argument)
-	{
-		cout << "Введено неверное значение" << endl;
-		exit(0);
-	}
-	cout << "Введите дейтсвие (+,-,*,/): ";
-	cin >> e;
-	switch (e)
-	{
-	case '+':
-		c = a + b;
-		cout << "Полученное значение: " << c;
-		break;
-	case '-':
-		c = a - b;
-		cout << "Полученное значение: " << c;
-		break;
-	case '*':
-		c = a * b;
-		cout << "Полученное значение: " << c;
-		break;
-	case '/':
-		if (b != 0)
-		{
-			c = a / b;
-			cout << "Полученное значение: " << c;
-			break;
-		}
-		else
-		{
-			cout << "Деление на 0 невозможно";
-			return 0;
-			break;
-		}
-	default:
-		cout << "Введено неверное значение действия";
-	}
+
 }
+
+int main()
+
+{
+
+	double c,a1=0,a2=0;
+
+	char e;
+
+	cout << "Enter the first number: ";
+
+	proverka(a1);
+
+	cout << "Enter the second number: ";
+
+	proverka(a2);
+
+	cout << "Enter action (+,-,*,/): ";
+
+	cin >> e;
+
+	switch (e)
+
+	{
+
+	case '+':
+
+		c = a1 + a2;
+
+		cout << "The resulting value: " << c;
+
+		break;
+
+	case '-':
+
+		c = a1 - a2;
+
+		cout << "The resulting value: " << c;
+
+		break;
+
+	case '*':
+
+		c = a1 * a2;
+
+		cout << "The resulting value: " << c;
+
+		break;
+
+	case '/':
+
+		if (a2 != 0)
+
+		{
+
+			c = a1 / a2;
+
+			cout << "The resulting value: " << c;
+
+			break;
+
+		}
+
+		else
+
+		{
+
+			cout << "Division by 0 is not possible";
+
+			return 0;
+
+			break;
+
+		}
+
+	default:
+
+		cout << "Incorrect action value entered";
+
+	}
+
+}
+		
