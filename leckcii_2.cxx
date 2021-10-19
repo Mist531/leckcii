@@ -1,138 +1,272 @@
 #include <iostream>
+
 #include <string>
+
 #include <fstream>
+
 using namespace std;
+
 void addText(string &a)
+
 {
-	string b;
-	cout << "Введите текст:";
+
+	string b;	cout << "Enter text:";
+
 	cin.ignore();
+
 	getline(cin, b);
+
 	a += b;
+
 }
+
 int main()
+
 {
-	system("chcp 1251");
-	cout << "Список действий:" << endl;
-	cout << "(Что ввести - что делает)" << endl;
-	cout << "1 - Выход из программы" << endl;
-	cout << "2 - Добавить текст в baff" << endl;
-	cout << "3 - Посмотреть что записано" << endl;
-	cout << "4 - Перевести текс в верхний регистер" << endl;
-	cout << "5 - Перевести текст в нижний регистер" << endl;
-	cout << "6 - Удалить введенный текст из baff" << endl;
-	cout << "7 - Добавить введённый текст в файл" << endl;
-	cout << "8 - Вывести файл" << endl;
-	string baff = "";
+
+	//объявление всех переменных до switch
+
+	string buffer = "";
+
+	string path;
+
+	ofstream fout;
+
+	ifstream fin;
+
+	string str;
+
+	cout << "List of actions:" << endl;
+
+	cout << "(What to enter - what does it do)" << endl;
+
+	cout << "1 - Exiting the program" << endl;
+
+	cout << "2 - Add text to buffer" << endl;
+
+	cout << "3 - See what's on the record" << endl;
+
+	cout << "4 - Translate text to uppercase" << endl;
+
+	cout << "5 - Translate text to lowercase" << endl;
+
+	cout << "6 - Delete entered text from baff" << endl;
+
+	cout << "7 - Add the entered text to the file" << endl;
+
+	cout << "8 - Output the file" << endl;
+
 	while (true)
+
 	{
+
 		char z;
-		cout << "Введите действие: ";
+
+		cout << "Enter action: ";
+
 		cin >> z;
+
 		switch (z)
+
 		{
+
 		case '1':
+
 		{
+
 			exit(0);
+
 			break;
+
 		}
+
 		case '2':
+
 		{
-			addText(baff);
+
+			addText(buffer);
+
 			break;
+
 		}
+
 		case '3':
+
 		{
-			cout << baff << endl;
+
+			cout << buffer << endl;
+
 			break;
+
 		}
+
 		case '4':
+
 		{
+
 			int i = 0;
-			while (baff[i])
+
+			while (buffer[i])
+
 			{
-				baff[i] = toupper(baff[i]);
+
+				buffer[i] = toupper(buffer[i]);
+
 				i++;
+
 			}
+
 			break;
+
 		}
+
 		case '5':
+
 		{
+
 			int i = 0;
-			while (baff[i])
+
+			while (buffer[i])
+
 			{
-				baff[i] = tolower(baff[i]);
+
+				buffer[i] = tolower(buffer[i]);
+
 				i++;
+
 			}
+
 			break;
+
 		}
+
 		case '6':
+
 		{
-			baff = "";
+
+			buffer = "";
+
 			break;
+
 		}
+
 		case '7':
+
 		{
-			string path;
-			ofstream fout;
-			cout << "Если не знаете какой файл указать, введите 1, будет автоматически создан File.txt" << endl;
-			cout << "Введите название файла:" << endl;
+
+			cout << "If you do not know which file to specify, enter 1, it will be automatically created File.txt" << endl;
+
+			cout << "Enter a file name:" << endl;
+
 			cin >> path;
+
 			if (path == "1")
+
 			{
+
 				path = "File.txt";
+
 				fout.open(path, ofstream::app);
+
 				if (!fout.is_open())
+
 				{
-					cout << "Ошибка открытия файла" << endl;
+
+					cout << "File opening error" << endl;
+
 				}
+
 				else
+
 				{
-					fout << baff + "\n";
+
+					fout << buffer + "\n";
+
 					fout.close();
+
 				}
+
 			}
+
 			else
+
 			{
+
 				fout.open(path, ofstream::app);
+
 				if (!fout.is_open())
+
 				{
-					cout << "Ошибка открытия файла" << endl;
+
+					cout << "File opening error" << endl;
+
 				}
+
 				else
+
 				{
-					fout << baff + "\n";
+
+					fout << buffer + "\n";
+
 					fout.close();
+
 				}
+
 			}
+
 			break;
+
 		}
+
 		case '8':
+
 		{
-			string path;
-			ifstream fin;
-			cout << "Введите название файла: ";
+
+			cout << "Enter a file name: ";
+
 			cin >> path;
+
 			fin.open(path);
+
 			if (!fin.is_open())
+
 			{
-				cout << "Ошибка открытия файла" << endl;
+
+				cout << "File opening error" << endl;
+
 			}
+
 			else
+
 			{
-				string str;
+
 				while (!fin.eof())
+
 				{
+
 					str = "";
+
 					getline(fin, str);
+
 					cout << str << endl;
+
 				}
+
 			}
+
 			fin.close();
+
 			break;
+
 		}
+
 		default:
-			cout << "Ошибка" << endl;
+
+			cout << "Error" << endl;
+
 		}
+
 	}
+
 }
+			
